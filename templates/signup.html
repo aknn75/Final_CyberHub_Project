@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block title %}Sign Up - Cybersecurity Toolkit{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <div class="login-card">
+        <div class="login-logo">
+            <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Cybersecurity Toolkit Logo" class="shield-logo">
+        </div>
+        
+        <h2 class="welcome-text">Create Account</h2>
+        <p class="login-subtitle">Sign up to start securing your digital world</p>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        <form method="POST" action="{{ url_for('signup') }}" class="login-form">
+            <div class="form-group">
+                <label for="username"><i class="fas fa-user"></i> Username</label>
+                <input type="text" id="username" name="username" placeholder="Choose a username" required autofocus>
+            </div>
+            
+            <div class="form-group">
+                <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password"><i class="fas fa-lock"></i> Password</label>
+                <input type="password" id="password" name="password" placeholder="Create a strong password" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="confirm_password"><i class="fas fa-check-double"></i> Confirm Password</label>
+                <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm your password" required>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn btn-login">
+                    <i class="fas fa-user-plus"></i> Sign Up
+                </button>
+            </div>
+        </form>
+        
+        <div class="auth-links">
+            <p>Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
+        </div>
+    </div>
+    
+    <div class="features-sidebar">
+        <div class="feature-highlight">
+            <h3>Why Choose Our Toolkit?</h3>
+        </div>
+        
+        <div class="feature-checklist">
+            <div class="feature-check-item">
+                <i class="fas fa-check-circle"></i>
+                <span>Comprehensive security scanning</span>
+            </div>
+            
+            <div class="feature-check-item">
+                <i class="fas fa-check-circle"></i>
+                <span>User-friendly interface</span>
+            </div>
+            
+            <div class="feature-check-item">
+                <i class="fas fa-check-circle"></i>
+                <span>Network analysis tools</span>
+            </div>
+            
+            <div class="feature-check-item">
+                <i class="fas fa-check-circle"></i>
+                <span>Advanced OSINT capabilities</span>
+            </div>
+            
+            <div class="feature-check-item">
+                <i class="fas fa-check-circle"></i>
+                <span>File verification tools</span>
+            </div>
+            
+            <div class="feature-check-item">
+                <i class="fas fa-check-circle"></i>
+                <span>Educational security resources</span>
+            </div>
+        </div>
+        
+        <div class="testimonial">
+            <p>"This toolkit has become an essential part of my security workflow."</p>
+            <div class="testimonial-author">- Security Professional</div>
+        </div>
+    </div>
+</div>
+{% endblock %}

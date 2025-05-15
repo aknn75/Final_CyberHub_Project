@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}Login - Cybersecurity Toolkit{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <div class="login-card">
+        <div class="login-logo">
+            <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Cybersecurity Toolkit Logo" class="shield-logo">
+        </div>
+        
+        <h2 class="welcome-text">Welcome Back</h2>
+        <p class="login-subtitle">Log in to access your security toolkit</p>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        <form method="POST" action="{{ url_for('login') }}" class="login-form">
+            <div class="form-group">
+                <label for="username"><i class="fas fa-user"></i> Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required autofocus>
+            </div>
+            
+            <div class="form-group">
+                <label for="password"><i class="fas fa-lock"></i> Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn btn-login">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+            </div>
+        </form>
+        
+        <div class="auth-links">
+            <p>Don't have an account? <a href="{{ url_for('signup') }}">Sign up here</a></p>
+        </div>
+    </div>
+    
+    <div class="features-sidebar">
+        <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-search"></i></div>
+            <div class="feature-content">
+                <h3>URL Scanner</h3>
+                <p>Analyze URLs and domains for potential security threats</p>
+            </div>
+        </div>
+        
+        <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-virus-slash"></i></div>
+            <div class="feature-content">
+                <h3>Malware Scanner</h3>
+                <p>Scan files for malicious code and security risks</p>
+            </div>
+        </div>
+        
+        <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-fingerprint"></i></div>
+            <div class="feature-content">
+                <h3>Hashing Tools</h3>
+                <p>Generate and verify file and text hashes</p>
+            </div>
+        </div>
+        
+        <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-user-secret"></i></div>
+            <div class="feature-content">
+                <h3>OSINT Search</h3>
+                <p>Open Source Intelligence search tools</p>
+            </div>
+        </div>
+        
+        <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-network-wired"></i></div>
+            <div class="feature-content">
+                <h3>Network Utilities</h3>
+                <p>Network analysis and diagnostics tools</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
